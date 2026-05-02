@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Assignments</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #05022e, #05022e, #05022e, #05022e);
+            background-size: 400% 400%;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(118, 75, 162, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        header {
+            background: #05022e;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border: 2px solid #0d47a1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header p {
+            font-size: 16px;
+            font-weight: 300;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 36px;
+            color: #ffffff;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            letter-spacing: 2px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -20px;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #0d47a1, #1565c0);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #0d47a1, #1565c0);
+            border-radius: 2px;
+        }
+
+        /* Assignment Card */
+        .assignment-card {
+            background: #05022e;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            cursor: pointer;
+            border: 2px solid #0d47a1;
+        }
+
+        .assignment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .assignment-card:hover::before {
+            left: 100%;
+        }
+
+        /* Card Header */
+        .card-header {
+            background: #05022e;
+            color: white;
+            padding: 35px 25px;
+            text-align: center;
+            border-top: 2px solid #0d47a1;
+            border-bottom: 2px solid #0d47a1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .card-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(135deg, #ffffff, #e8e8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-number:hover {
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Card Body */
+        .card-body {
+            padding: 28px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .card-details {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .detail-tag {
+            background: linear-gradient(135deg, #1a3a52, #0d2a3f);
+            color: #64b5f6;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(33, 150, 243, 0.5);
+        }
+
+        .detail-tag:hover {
+            background: linear-gradient(135deg, #0d47a1, #1565c0);
+            color: #ffffff;
+        }
+
+        /* Card Footer */
+        .card-footer {
+            padding: 0 28px 28px;
+            margin-top: auto;
+        }
+
+        .view-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1px;
+            width: 100%;
+            text-align: center;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .view-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .view-button:hover::before {
+            left: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background: #05022e;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 80px;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #0d47a1;
+            border-top: 3px solid #0d47a1;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+        }
+
+        footer p {
+            margin: 12px 0;
+            opacity: 0.9;
+        }
+
+        footer a {
+            color: #a5b4fc;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+        }
+
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #a5b4fc;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        /* Assignments Grid */
+        .assignments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        /* Category Section */
+        .category-section {
+            margin-bottom: 80px;
+        }
+
+        .category-title {
+            font-size: 28px;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #0d47a1;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Enhanced Card Styles */
+        .assignment-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3) !important;
+            border-color: #667eea;
+        }
+
+        /* XML-specific Card Styling */
+        .xml-card .card-header {
+            background: linear-gradient(135deg, #1a3a52, #0d2a3f);
+        }
+
+        .xml-card .detail-tag {
+            background: linear-gradient(135deg, #1a4d2e, #0d3a22);
+            border-color: rgba(76, 175, 80, 0.5);
+            color: #81c784;
+        }
+
+        .xml-card .view-button {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .category-title {
+                font-size: 24px;
+            }
+
+            .assignments-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .container {
+                padding: 40px 15px;
+            }
+
+            .card-number {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Web Development Practicals</h1>
+        <p>Semester 4 - College Assignment Series</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h2 class="section-title">All Assignments</h2>
+
+        <!-- HTML & CSS Category -->
+        <div class="category-section">
+            <h3 class="category-title">📄 HTML & CSS Basics</h3>
+            <div class="assignments-grid">
+
+                <!-- Assignment 1 -->
+                <div class="assignment-card">
+                    <div class="card-header">
+                        <div class="card-number">01</div>
+                        <div class="card-title">First Webpage</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Introduction to HTML basics - creating your first webpage with proper structure and semantic elements.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">HTML</span>
+                            <span class="detail-tag">Basics</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="assignment1_first_webpage.html" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 2 -->
+                <div class="assignment-card">
+                    <div class="card-header">
+                        <div class="card-number">02</div>
+                        <div class="card-title">Static Webpage</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Building static web pages with HTML content - understanding page structure and layout concepts.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">HTML</span>
+                            <span class="detail-tag">Layout</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="assignment2_static_webpage.html" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 3 -->
+                <div class="assignment-card">
+                    <div class="card-header">
+                        <div class="card-number">03</div>
+                        <div class="card-title">Text Formatting</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Mastering text formatting tags - bold, italic, underline, subscript, superscript, and more.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">HTML</span>
+                            <span class="detail-tag">Text Tags</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="assignment3_text_formatting.html" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 4 -->
+                <div class="assignment-card">
+                    <div class="card-header">
+                        <div class="card-number">04</div>
+                        <div class="card-title">Lists & Tags</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Working with ordered lists, unordered lists, definition lists, and other semantic HTML tags.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">HTML</span>
+                            <span class="detail-tag">Lists</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="assignment4_lists_tags.html" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 5 -->
+                <div class="assignment-card">
+                    <div class="card-header">
+                        <div class="card-number">05</div>
+                        <div class="card-title">Image Tags</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Understanding image integration - file formats, attributes, responsive images, and optimization.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">HTML</span>
+                            <span class="detail-tag">Images</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="assignment5_image_tags.htm" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 6 -->
+                <div class="assignment-card">
+                    <div class="card-header">
+                        <div class="card-number">06</div>
+                        <div class="card-title">iFrames</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Embedding external content using iFrames - embedding videos, maps, and other web content.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">HTML</span>
+                            <span class="detail-tag">iFrames</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="assignment6_iFrames.html" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 7 -->
+                <div class="assignment-card">
+                    <div class="card-header">
+                        <div class="card-number">07</div>
+                        <div class="card-title">Hyperlinks & Images</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Creating hyperlinks using both text and images - anchor tags, navigation, and image maps.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">HTML</span>
+                            <span class="detail-tag">Links</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="assignment7_hyperlink_using_text_and_image.html" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 8 -->
+                <div class="assignment-card">
+                    <div class="card-header">
+                        <div class="card-number">08</div>
+                        <div class="card-title">Tables</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Building structured tables - rows, columns, headers, footers, and table styling techniques.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">HTML</span>
+                            <span class="detail-tag">Tables</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="assignment8_table.html" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 9 -->
+                <div class="assignment-card">
+                    <div class="card-header">
+                        <div class="card-number">09</div>
+                        <div class="card-title">Forms</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Creating interactive forms - input fields, validation, radio buttons, checkboxes, and form submission.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">HTML</span>
+                            <span class="detail-tag">Forms</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="assignment9.html" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 10 -->
+                <div class="assignment-card">
+                    <div class="card-header">
+                        <div class="card-number">10</div>
+                        <div class="card-title">Resume Website</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Building a professional resume website - combining HTML and CSS for a complete portfolio page.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">HTML</span>
+                            <span class="detail-tag">CSS</span>
+                            <span class="detail-tag">Portfolio</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="Assignment 10/Assignment 10.html" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- XML & Advanced Practicals Category -->
+        <div class="category-section">
+            <h3 class="category-title">🔗 XML & Advanced Practicals</h3>
+            <div class="assignments-grid">
+
+                <!-- Assignment 11 - XML CSS Students -->
+                <div class="assignment-card xml-card">
+                    <div class="card-header">
+                        <div class="card-number">11</div>
+                        <div class="card-title">XML with CSS - Students</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Styling XML documents with CSS - learn how to apply CSS stylesheets to XML files for visual presentation.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">XML</span>
+                            <span class="detail-tag">CSS</span>
+                            <span class="detail-tag">Styling</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="XML_CSS/students.xml" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 12 - XML CSS Employees -->
+                <div class="assignment-card xml-card">
+                    <div class="card-header">
+                        <div class="card-number">12</div>
+                        <div class="card-title">XML with CSS - Employees</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            XML document styling with employee data - demonstrates CSS presentation of structured XML content.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">XML</span>
+                            <span class="detail-tag">CSS</span>
+                            <span class="detail-tag">Data</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="XML_CSS/employees.xml" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 13 - XML CSS Library -->
+                <div class="assignment-card xml-card">
+                    <div class="card-header">
+                        <div class="card-number">13</div>
+                        <div class="card-title">XML with CSS - Library</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            XML-based library catalog with CSS styling - structured data presentation for book information.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">XML</span>
+                            <span class="detail-tag">CSS</span>
+                            <span class="detail-tag">Catalog</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="XML_CSS/library.xml" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 14 - XML CSS Books -->
+                <div class="assignment-card xml-card">
+                    <div class="card-header">
+                        <div class="card-number">14</div>
+                        <div class="card-title">XML with CSS - Books</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            XML markup for book data with CSS transformation - learn structured data management and styling.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">XML</span>
+                            <span class="detail-tag">CSS</span>
+                            <span class="detail-tag">Content</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="XML_CSS/Books.xml" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 15 - XSL Transformation Cat -->
+                <div class="assignment-card xml-card">
+                    <div class="card-header">
+                        <div class="card-number">15</div>
+                        <div class="card-title">XSL Transformation - Catalog</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            XSL stylesheet transformation of XML catalog data - transform XML to HTML output for web display.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">XML</span>
+                            <span class="detail-tag">XSL</span>
+                            <span class="detail-tag">Transform</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="XML transformation using XSL/cat_output.htm" class="view-button">View Output</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 16 - XSL Transformation CD Catalog -->
+                <div class="assignment-card xml-card">
+                    <div class="card-header">
+                        <div class="card-number">16</div>
+                        <div class="card-title">XSL Transformation - CD Catalog</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            XSLT processing of CD catalog XML - demonstrates transformation to structured HTML presentation.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">XML</span>
+                            <span class="detail-tag">XSLT</span>
+                            <span class="detail-tag">Output</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="XML transformation using XSL/cdcatlog_output.htm" class="view-button">View Output</a>
+                    </div>
+                </div>
+
+                <!-- Assignment 17 - XSLT Conditional Statements -->
+                <div class="assignment-card xml-card">
+                    <div class="card-header">
+                        <div class="card-number">17</div>
+                        <div class="card-title">XSLT with Conditional Logic</div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-description">
+                            Advanced XSLT using conditional statements (if/else) - control flow in XML transformation pipelines.
+                        </p>
+                        <div class="card-details">
+                            <span class="detail-tag">XSLT</span>
+                            <span class="detail-tag">Conditional</span>
+                            <span class="detail-tag">Advanced</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="XML Transformation uisng XSLT and conditional statement/students.xml" class="view-button">View Assignment</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Web Development Practicals | Semester 4 - Computer Science</p>
+        <p>Student: <strong>Suyash Rajesh Hirekerur</strong> | Roll No: <strong>64</strong></p>
+        <p>D Y Patil College of Engineering and Technology, Kolhapur</p>
+    </footer>
+
+</body>
+</html>
