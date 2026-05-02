@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Suyash Resume</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;400;500;600&family=Inter:wght@400;500&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0e27, #1a1f3a, #1f1a35);
+            color: #e0e0e0;
+        }
+
+        /* Main container */
+        .main {
+            width: 85%;
+            margin: auto;
+            padding: 40px 20px;
+            max-width: 1000px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: rgba(0, 230, 255, 0.08);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 230, 255, 0.2);
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            color: #00e6ff;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: #00e6ff;
+            font-size: 16px;
+            margin: 10px 0 0 0;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            margin: 25px 0;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 230, 255, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 230, 255, 0.3);
+        }
+
+        /* Highlight card */
+        .highlight {
+            background: rgba(0, 230, 255, 0.1);
+            border: 2px solid rgba(0, 230, 255, 0.3);
+        }
+
+        /* Headings */
+        h2 {
+            color: #00e6ff;
+            font-size: 26px;
+            border-bottom: 2px solid #00e6ff;
+            padding-bottom: 12px;
+            margin-top: 0;
+            letter-spacing: 1px;
+        }
+
+        h3 {
+            color: #ffffff;
+            font-size: 18px;
+            margin: 15px 0 8px 0;
+            font-weight: 600;
+        }
+
+        /* Skills */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skills span {
+            display: inline-block;
+            background: #00e6ff;
+            color: #0a0e27;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 230, 255, 0.2);
+        }
+
+        .skills span:hover {
+            background: #00f0ff;
+            box-shadow: 0 4px 12px rgba(0, 230, 255, 0.3);
+        }
+
+        /* Education */
+        .edu {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 230, 255, 0.05);
+            border-left: 4px solid #00e6ff;
+            border-radius: 8px;
+        }
+
+        .edu:hover {
+            background: rgba(0, 230, 255, 0.1);
+        }
+
+        .edu h3 {
+            margin-top: 0;
+        }
+
+        .edu p {
+            margin: 5px 0 0 0;
+            color: #b0b0b0;
+            font-size: 14px;
+        }
+
+        /* Links */
+        a {
+            color: #00e6ff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #ff00c8;
+        }
+
+        /* Contact */
+        .contact {
+            text-align: center;
+            background: rgba(0, 230, 255, 0.08);
+        }
+
+        /* Paragraphs */
+        p {
+            line-height: 1.8;
+            color: #d0d0d0;
+            font-weight: 300;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main {
+                width: 95%;
+                padding: 20px 10px;
+            }
+
+            header h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+
+        <!-- HEADER -->
+        <header>
+            <h1>Suyash Rajesh Hirekerur</h1>
+            <p>Second Year Computer Science Student 💻</p>
+        </header>
+
+        <!-- PROFILE CARD -->
+        <section class="card highlight">
+            <h2>👨‍💻 About Me</h2>
+            <p>
+                I am currently pursuing <strong>Full Stack Web Development</strong> and continuously
+                enhancing my expertise in modern web technologies. Through CAC Professional
+                certification and training programs, I'm gaining hands-on experience with industry
+                best practices and real-world project development.
+            </p>
+            <p>
+                <strong>CAC Profession:</strong> Committed to achieving professional excellence through
+                structured learning, practical implementation, and staying updated with the latest
+                development trends and frameworks in the web industry.
+            </p>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="card">
+            <h2>🎓 Education</h2>
+
+            <div class="edu">
+                <h3>B.Tech CSE</h3>
+                <p>D Y Patil College of Engineering and Technology, Kolhapur</p>
+            </div>
+
+            <div class="edu">
+                <h3>Junior College (12th)</h3>
+                <p>New Model Junior College, Kolhapur</p>
+            </div>
+
+            <div class="edu">
+                <h3>School</h3>
+                <p>Shrimant Maisaheb Bavadekar Academy, Kolhapur</p>
+            </div>
+
+        </section>
+
+        <!-- SKILLS -->
+        <section class="card">
+            <h2>⚡ Skills</h2>
+            <div class="skills">
+                <span>C++</span>
+                <span>Java</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>Python</span>
+            </div>
+        </section>
+
+        <!-- GITHUB PROJECTS -->
+        <section class="card">
+            <h2>💻 GitHub Projects</h2>
+
+            <p>
+                🔗 <a href="https://github.com/suyashhirekerur" target="_blank">
+                    View My GitHub Profile
+                </a>
+            </p>
+
+            <p>
+                📁 Explore all repositories, coding projects, and development work.
+            </p>
+        </section>
+
+        <!-- HABITS -->
+        <section class="card">
+            <h2>⭐ Interests & Hobbies</h2>
+            <p>💹 Trading</p>
+            <p>🏏 Playing Cricket</p>
+            <p>📚 Reading Books</p>
+            <p>♟️ Playing Chess</p>
+            <p>💻 Coding & Programming</p>
+            <p>🤖 Reading about AI & Machine Learning</p>
+            <p>🎨 Graphic Designing</p>
+            <p>🎬 Video Editing</p>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="card contact">
+            <h2>📞 Contact & Connect</h2>
+            <p>
+                <strong>Email:</strong> <a href="mailto:suyash@email.com">suyash@email.com</a>
+            </p>
+            <p>
+                <strong>Phone:</strong> <a href="tel:+919876543210">+91 9876543210</a>
+            </p>
+            <p style="margin-top: 20px; color: #00e6ff; font-size: 14px;">
+                💡 Feel free to reach out for collaborations or inquiries!
+            </p>
+        </section>
+
+    </div>
+
+</body>
+
+</html>
