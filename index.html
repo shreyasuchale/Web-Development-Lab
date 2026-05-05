@@ -3,816 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Development Assignments</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <title>Web Development Lab Dashboard</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(-45deg, #05022e, #05022e, #05022e, #05022e);
-            background-size: 400% 400%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .main-container {
+            background: white;
+            width: 95%;
+            height: 90vh;
+            border-radius: 20px;
+            display: flex;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 320px;
+            background: #ffffff;
+            border-right: 1px solid #eee;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            text-align: center;
             color: #333;
-            line-height: 1.6;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -100px;
-            left: -100px;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(118, 75, 162, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -50px;
-            right: -50px;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Header Section */
-        header {
-            background: #05022e;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            border: 2px solid #0d47a1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-        }
-
-        header h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 48px;
-            margin-bottom: 10px;
-            letter-spacing: 3px;
-            position: relative;
-            z-index: 2;
-        }
-
-        header p {
-            font-size: 16px;
-            font-weight: 300;
-            opacity: 0.95;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Section Title */
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            font-size: 36px;
-            color: #ffffff;
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            letter-spacing: 2px;
-        }
-
-        .section-title::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: -20px;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, #0d47a1, #1565c0);
-            transform: translateX(-50%);
-            border-radius: 2px;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #0d47a1, #1565c0);
-            border-radius: 2px;
-        }
-
-        /* Assignment Card */
-        .assignment-card {
-            background: #05022e;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            cursor: pointer;
-            border: 2px solid #0d47a1;
-        }
-
-        .assignment-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            z-index: 10;
-            pointer-events: none;
-        }
-
-        .assignment-card:hover::before {
-            left: 100%;
-        }
-
-        /* Card Header */
-        .card-header {
-            background: #05022e;
-            color: white;
-            padding: 35px 25px;
-            text-align: center;
-            border-top: 2px solid #0d47a1;
-            border-bottom: 2px solid #0d47a1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-header::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-
-        .card-number {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 48px;
-            font-weight: 900;
-            margin-bottom: 8px;
-            position: relative;
-            z-index: 2;
-            background: linear-gradient(135deg, #ffffff, #e8e8ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .card-number:hover {
-        }
-
-        .card-title {
             font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 2;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
         }
 
-        /* Card Body */
-        .card-body {
-            padding: 28px;
+        .exp-btn {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            text-align: left;
+        }
+
+        .exp-btn:hover {
+            background: #eef2ff;
+            transform: translateX(5px);
+        }
+
+        .exp-btn.active {
+            background: #4e73df;
+            color: white;
+            border-color: #4e73df;
+        }
+
+        .exp-num {
+            background: #4e73df;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 11px;
+            margin-right: 12px;
+            min-width: 45px;
+            text-align: center;
+        }
+
+        .active .exp-num {
+            background: white;
+            color: #4e73df;
+        }
+
+        .output-screen {
             flex-grow: 1;
+            padding: 20px;
+            background: #fff;
             display: flex;
             flex-direction: column;
-            position: relative;
         }
 
-        .card-description {
-            font-size: 14px;
-            color: #e0e0e0;
-            margin-bottom: 20px;
-            line-height: 1.8;
-            font-weight: 400;
-        }
-
-        .card-details {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .detail-tag {
-            background: linear-gradient(135deg, #1a3a52, #0d2a3f);
-            color: #64b5f6;
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            border: 1px solid rgba(33, 150, 243, 0.5);
-        }
-
-        .detail-tag:hover {
-            background: linear-gradient(135deg, #0d47a1, #1565c0);
-            color: #ffffff;
-        }
-
-        /* Card Footer */
-        .card-footer {
-            padding: 0 28px 28px;
-            margin-top: auto;
-        }
-
-        .view-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #0d47a1 0%, #1565c0 100%);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 15px;
-            letter-spacing: 1px;
+        #output-display {
+            border: 1px solid #eee;
+            border-radius: 15px;
+            height: 100%;
             width: 100%;
-            text-align: center;
-            border: 2px solid transparent;
-            position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            background: #ffffff;
         }
 
-        .view-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        iframe {
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        }
-
-        .view-button:hover::before {
-            left: 100%;
-        }
-
-        /* Footer */
-        footer {
-            background: #05022e;
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
-            margin-top: 80px;
-            font-size: 14px;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid #0d47a1;
-            border-top: 3px solid #0d47a1;
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #667eea, transparent);
-        }
-
-        footer p {
-            margin: 12px 0;
-            opacity: 0.9;
-        }
-
-        footer a {
-            color: #a5b4fc;
-            text-decoration: none;
-            font-weight: 600;
-            position: relative;
-        }
-
-        footer a::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #a5b4fc;
-        }
-
-        footer a:hover {
-            color: #ffffff;
-        }
-
-        /* Assignments Grid */
-        .assignments-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 80px;
-        }
-
-        /* Category Section */
-        .category-section {
-            margin-bottom: 80px;
-        }
-
-        .category-title {
-            font-size: 28px;
-            color: #ffffff;
-            font-weight: 700;
-            margin-bottom: 40px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #0d47a1;
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .category-title::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 2px;
-        }
-
-        /* Enhanced Card Styles */
-        .assignment-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(0);
-        }
-
-        .assignment-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3) !important;
-            border-color: #667eea;
-        }
-
-        /* XML-specific Card Styling */
-        .xml-card .card-header {
-            background: linear-gradient(135deg, #1a3a52, #0d2a3f);
-        }
-
-        .xml-card .detail-tag {
-            background: linear-gradient(135deg, #1a4d2e, #0d3a22);
-            border-color: rgba(76, 175, 80, 0.5);
-            color: #81c784;
-        }
-
-        .xml-card .view-button {
-            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 36px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-
-            .category-title {
-                font-size: 24px;
-            }
-
-            .assignments-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .container {
-                padding: 40px 15px;
-            }
-
-            .card-number {
-                font-size: 36px;
-            }
+            border: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>Web Development Practicals</h1>
-        <p>Semester 4 - College Assignment Series</p>
-    </header>
-
-    <!-- Main Container -->
-    <div class="container">
-        <h2 class="section-title">All Assignments</h2>
-
-        <!-- HTML & CSS Category -->
-        <div class="category-section">
-            <h3 class="category-title">📄 HTML & CSS Basics</h3>
-            <div class="assignments-grid">
-
-                <!-- Assignment 1 -->
-                <div class="assignment-card">
-                    <div class="card-header">
-                        <div class="card-number">01</div>
-                        <div class="card-title">First Webpage</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Introduction to HTML basics - creating your first webpage with proper structure and semantic elements.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">HTML</span>
-                            <span class="detail-tag">Basics</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="assignment1_first_webpage.html" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 2 -->
-                <div class="assignment-card">
-                    <div class="card-header">
-                        <div class="card-number">02</div>
-                        <div class="card-title">Static Webpage</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Building static web pages with HTML content - understanding page structure and layout concepts.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">HTML</span>
-                            <span class="detail-tag">Layout</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="assignment2_static_webpage.html" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 3 -->
-                <div class="assignment-card">
-                    <div class="card-header">
-                        <div class="card-number">03</div>
-                        <div class="card-title">Text Formatting</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Mastering text formatting tags - bold, italic, underline, subscript, superscript, and more.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">HTML</span>
-                            <span class="detail-tag">Text Tags</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="assignment3_text_formatting.html" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 4 -->
-                <div class="assignment-card">
-                    <div class="card-header">
-                        <div class="card-number">04</div>
-                        <div class="card-title">Lists & Tags</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Working with ordered lists, unordered lists, definition lists, and other semantic HTML tags.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">HTML</span>
-                            <span class="detail-tag">Lists</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="assignment4_lists_tags.html" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 5 -->
-                <div class="assignment-card">
-                    <div class="card-header">
-                        <div class="card-number">05</div>
-                        <div class="card-title">Image Tags</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Understanding image integration - file formats, attributes, responsive images, and optimization.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">HTML</span>
-                            <span class="detail-tag">Images</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="assignment5_image_tags.htm" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 6 -->
-                <div class="assignment-card">
-                    <div class="card-header">
-                        <div class="card-number">06</div>
-                        <div class="card-title">iFrames</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Embedding external content using iFrames - embedding videos, maps, and other web content.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">HTML</span>
-                            <span class="detail-tag">iFrames</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="assignment6_iFrames.html" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 7 -->
-                <div class="assignment-card">
-                    <div class="card-header">
-                        <div class="card-number">07</div>
-                        <div class="card-title">Hyperlinks & Images</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Creating hyperlinks using both text and images - anchor tags, navigation, and image maps.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">HTML</span>
-                            <span class="detail-tag">Links</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="assignment7_hyperlink_using_text_and_image.html" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 8 -->
-                <div class="assignment-card">
-                    <div class="card-header">
-                        <div class="card-number">08</div>
-                        <div class="card-title">Tables</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Building structured tables - rows, columns, headers, footers, and table styling techniques.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">HTML</span>
-                            <span class="detail-tag">Tables</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="assignment8_table.html" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 9 -->
-                <div class="assignment-card">
-                    <div class="card-header">
-                        <div class="card-number">09</div>
-                        <div class="card-title">Forms</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Creating interactive forms - input fields, validation, radio buttons, checkboxes, and form submission.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">HTML</span>
-                            <span class="detail-tag">Forms</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="assignment9.html" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 10 -->
-                <div class="assignment-card">
-                    <div class="card-header">
-                        <div class="card-number">10</div>
-                        <div class="card-title">Resume Website</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Building a professional resume website - combining HTML and CSS for a complete portfolio page.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">HTML</span>
-                            <span class="detail-tag">CSS</span>
-                            <span class="detail-tag">Portfolio</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="Assignment 10/Assignment 10.html" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-            </div>
+    <div class="main-container">
+        <div class="sidebar">
+            <h2>Web Dev Lab</h2>
+            <div id="btn-container"></div>
         </div>
 
-        <!-- XML & Advanced Practicals Category -->
-        <div class="category-section">
-            <h3 class="category-title">🔗 XML & Advanced Practicals</h3>
-            <div class="assignments-grid">
-
-                <!-- Assignment 11 - XML CSS Students -->
-                <div class="assignment-card xml-card">
-                    <div class="card-header">
-                        <div class="card-number">11</div>
-                        <div class="card-title">XML with CSS - Students</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Styling XML documents with CSS - learn how to apply CSS stylesheets to XML files for visual presentation.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">XML</span>
-                            <span class="detail-tag">CSS</span>
-                            <span class="detail-tag">Styling</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="XML_CSS/students.xml" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 12 - XML CSS Employees -->
-                <div class="assignment-card xml-card">
-                    <div class="card-header">
-                        <div class="card-number">12</div>
-                        <div class="card-title">XML with CSS - Employees</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            XML document styling with employee data - demonstrates CSS presentation of structured XML content.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">XML</span>
-                            <span class="detail-tag">CSS</span>
-                            <span class="detail-tag">Data</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="XML_CSS/employees.xml" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 13 - XML CSS Library -->
-                <div class="assignment-card xml-card">
-                    <div class="card-header">
-                        <div class="card-number">13</div>
-                        <div class="card-title">XML with CSS - Library</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            XML-based library catalog with CSS styling - structured data presentation for book information.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">XML</span>
-                            <span class="detail-tag">CSS</span>
-                            <span class="detail-tag">Catalog</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="XML_CSS/library.xml" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 14 - XML CSS Books -->
-                <div class="assignment-card xml-card">
-                    <div class="card-header">
-                        <div class="card-number">14</div>
-                        <div class="card-title">XML with CSS - Books</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            XML markup for book data with CSS transformation - learn structured data management and styling.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">XML</span>
-                            <span class="detail-tag">CSS</span>
-                            <span class="detail-tag">Content</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="XML_CSS/Books.xml" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 15 - XSL Transformation Cat -->
-                <div class="assignment-card xml-card">
-                    <div class="card-header">
-                        <div class="card-number">15</div>
-                        <div class="card-title">XSL Transformation - Catalog</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            XSL stylesheet transformation of XML catalog data - transform XML to HTML output for web display.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">XML</span>
-                            <span class="detail-tag">XSL</span>
-                            <span class="detail-tag">Transform</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="XML transformation using XSL/cat_output.htm" class="view-button">View Output</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 16 - XSL Transformation CD Catalog -->
-                <div class="assignment-card xml-card">
-                    <div class="card-header">
-                        <div class="card-number">16</div>
-                        <div class="card-title">XSL Transformation - CD Catalog</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            XSLT processing of CD catalog XML - demonstrates transformation to structured HTML presentation.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">XML</span>
-                            <span class="detail-tag">XSLT</span>
-                            <span class="detail-tag">Output</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="XML transformation using XSL/cdcatlog_output.htm" class="view-button">View Output</a>
-                    </div>
-                </div>
-
-                <!-- Assignment 17 - XSLT Conditional Statements -->
-                <div class="assignment-card xml-card">
-                    <div class="card-header">
-                        <div class="card-number">17</div>
-                        <div class="card-title">XSLT with Conditional Logic</div>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-description">
-                            Advanced XSLT using conditional statements (if/else) - control flow in XML transformation pipelines.
-                        </p>
-                        <div class="card-details">
-                            <span class="detail-tag">XSLT</span>
-                            <span class="detail-tag">Conditional</span>
-                            <span class="detail-tag">Advanced</span>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="XML Transformation uisng XSLT and conditional statement/students.xml" class="view-button">View Assignment</a>
-                    </div>
-                </div>
-
+        <div class="output-screen">
+            <h2 id="exp-title" style="color: #333; margin-top: 0;">Select an Experiment</h2>
+            <div id="output-display">
+                <div style="text-align:center; color:#888; margin-top:20%;">See Output...</div>
             </div>
         </div>
-
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Web Development Practicals | Semester 4 - Computer Science</p>
-        <p>Student: <strong>Suyash Rajesh Hirekerur</strong> | Roll No: <strong>64</strong></p>
-        <p>D Y Patil College of Engineering and Technology, Kolhapur</p>
-    </footer>
+    <script>
+        const experiments = {
+            1: { title: "Basic HTML Structure", content: `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>My Static Web Page</title></head><body><p>Hello world</p></body></html>` },
+            2: { title: "Text Formatting Tags", content: `<!DOCTYPE html><html><head><title>Text Formatting Tags</title></head><body><h2>HTML Text Formatting Tags Examples</h2><br><br><strong>D.Y. Patil College of Engineering and Technology</strong><br><br><i>D.Y. Patil College of Engineering and Technology</i><br><br><em>D.Y. Patil College of Engineering and Technology</em><br><br><u>D.Y. Patil College of Engineering and Technology</u><br><br><mark>D.Y. Patil College of Engineering and Technology</mark><br><br><small>D.Y. Patil College of Engineering and Technology</small><br><br><s>D.Y. Patil College of Engineering and Technology</s><br><br><del>D.Y. Patil College of Engineering and Technology</del><br><br><ins>D.Y. Patil College of Engineering and Technology</ins><br><br><code>D.Y. Patil College of Engineering and Technology</code><br><br><samp>Sample Text</samp><br><br><q>D.Y. Patil College of Engineering and Technology</q><br><br><cite>D.Y. Patil College of Engineering and Technology</cite><br><br><abbr title="Engineering College">DYP</abbr></body></html>` },
+            3: { title: "Static Web Page", content: `<!DOCTYPE html><html><head><title>My Static Web Page</title></head><body><h1>Welcome to My Website</h1><p>This is a simple static web page created using HTML. Static web pages display fixed content and do not change.</p><h2>About Me</h2><p>My name is Shahuraj. I am an engineering student. I am learning basic web development.</p><h2>My Skills</h2><ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li></ul><h2>Contact</h2><p>Email:shreyasuchale@gmail.com</p></body></html>` },
+            4: { title: "HTML List Tags", content: `<!DOCTYPE html><html><head><title>All HTML List Tags</title></head><body><h3>Unordered List (Default)</h3><ul><li>Sun</li><li>Moon</li><li>Star</li><li>Stone</li></ul><h3>Unordered List - Different Styles</h3><ul type="circle"><li>Mango</li><li>Banana</li></ul><ul type="square"><li>Apple</li><li>Watermelon</li></ul><h3>Ordered List - Numbers</h3><ol type="1"><li>C</li><li>C++</li><li>Java</li></ol><h3>Ordered List - Roman</h3><ol type="I"><li>Python</li></ol></body></html>` },
+            5: { title: "Image Tag", content: `<!DOCTYPE html><html><head><title>My Image Webpage</title></head><body><h2>Shahuraj Jagtap(S5-115)</h2><h1>Welcome to My Webpage</h1><hr><img src="https://media.istockphoto.com/id/1390038554/photo/tyrannosaurus-from-the-cretaceous-era-3d-illustration.jpg?b=1&s=612x612&w=0&k=20&c=8HiFUFCT_yzjrm_j5uuL32EVx6lSmjlA4en2-uBxz3Y=" alt="dinosaur image" width="300" height="300"><p>--Above is the image included using the img tag--</p></body></html>` },
+            6: { title: "Frame Layout", content: `<!DOCTYPE html><html><head><title>All Frames</title></head><frameset rows="25%,75%"><frame src="data:text/html,<html><body style='background-color:lightblue; text-align:center;'><h1>WELCOME TO MY UNIQUE FRAME PAGE</h1></body></html>"><frameset cols="30%,70%"><frame src="data:text/html,<html><body style='background-color:lightgray;'><h3>MENU</h3><ul><li>Home</li><li>About</li><li>Contact</li></ul></body></html>"><frame src="data:text/html,<html><body style='background-color:white; text-align:center;'><h2>Main Content Area</h2><p>Below is an IFRAME inside a FRAME</p><iframe srcdoc='<html><body style=&quot;background-color:lightyellow; text-align:center;&quot;><h3>This is inside IFRAME</h3><p>All created in ONE single file!</p></body></html>' width='90%' height='150'></iframe></body></html>"></frameset></frameset></html>` },
+            7: { title: "Link Tag Demo", content: `<!DOCTYPE html><html><head><title>Link Tag Demonstration</title></head><body><h1>Demonstration of HTML Link Tags</h1><h3>1. External Link</h3><a href="https://www.google.com" target="_blank">Visit Google</a><br><br><h3>2. Internal Link</h3><a<h3>3. Email Link</h3><a href="mailto:shreyasuchale@gmail.com">Send Email</a><br><br>></body></html>` },
+            8: { title: "Class Time Table", content: `<!DOCTYPE html><html><head><title>Class Time Table</title></head><body><table border ="1"><caption>Class Time Table</caption><tr><th>Day / Time</th><th>9:00 - 11:00</th><th>11:15 - 12:15</th><th>12:15 - 1:15</th><th>1:15 - 2:00</th><th>2:00 - 3:00</th><th>3:00 - 4:00</th></tr><tr><td>Monday</td><td>TTL(Lab)</td><td>AOOC</td><td>MDM</td><td rowspan="5"> Lunch </td><td>DSL</td><td>-</td></tr><tr><td>Tuesday</td><td>WD(LAB)</td><td>AT</td><td>DSA</td><td>WD</td><td>ENV</td></tr><tr><td>Wednesday</td><td>TPMS(LAB)</td><td>AOOC</td><td>MDM</td><td>DSL</td><td>ENV</td></tr><tr><td>Thursday</td><td>AOOC(LAB)</td><td>AT</td><td>AT</td><td>-</td><td>OEC</td></tr><tr><td>Friday</td><td>DSL(LAB)</td><td>TTL(LAB)</td><td>TPMS</td><td>OEC</td><td>DSA</td></tr></table></body></html>` },
+            9: { 
+                title: "Student Registration Form", 
+                content: `<!DOCTYPE html><html><head><title>Student Registration Form</title><style>body { font-family: Arial, sans-serif; background-color: #f2f2f2; } h2 { text-align: center; } form { background-color: white; width: 400px; margin: auto; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px gray; } input, select, textarea { width: 100%; padding: 8px; margin-top: 5px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; } input[type="radio"], input[type="checkbox"] { width: auto; } input[type="submit"] { background-color: green; color: white; border: none; cursor: pointer; } input[type="reset"] { background-color: rgb(0, 26, 255); color: white; border: none; cursor: pointer; } input[type="submit"]:hover { background-color: darkgreen; } input[type="reset"]:hover { background-color: rgb(0, 132, 139); }</style></head><body><h2>Student Registration Form</h2><form>Name: <input type="text" name="name">Email: <input type="email" name="email">Password: <input type="password" name="password">Age: <input type="number" name="age">Mobile number: <input type ="tel" name="Mobile number">Gender: <input type="radio" name="gender"> Male <input type="radio" name="gender"> Female<br>Hobbies: <input type="checkbox"> Reading <input type="checkbox"> Sports <input type="checkbox"> Music<br><br>Date of Birth: <input type="date">Upload Resume: <input type="file">Course: <select><option>BCA</option><option>BSc</option><option>BTech</option></select>Address: <textarea rows="4"></textarea><input type="submit" value="Register"><input type="reset" value="Clear"></form></body></html>` 
+            },
+            10: { 
+                title: "Professional Resume", 
+                content: `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><style>
+                    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 20px; line-height: 1.6; color: #333; background-color: #f9f9f9; }
+                    .resume-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 700px; margin: auto; }
+                    h1 { color: #4e73df; margin-bottom: 5px; border-bottom: 2px solid #4e73df; padding-bottom: 10px; }
+                    h2 { color: #333; font-size: 1.1em; margin-top: 20px; text-transform: uppercase; border-left: 4px solid #4e73df; padding-left: 10px; }
+                    .info { margin-bottom: 15px; font-size: 0.95em; }
+                    .skills span { background: #eef2ff; padding: 4px 10px; border-radius: 5px; display: inline-block; margin: 3px; font-size: 0.85em; border: 1px solid #4e73df; }
+                    .project-item { margin-bottom: 12px; padding: 10px; background: #fafafa; border-radius: 5px; }
+                </style></head><body>
+                <div class="resume-card">
+                    <h1>Uchale Mukund Ambarnath</h1>
+                    <div class="info">
+                        <strong>Branch:</strong> B.Tech - CSE (2nd Year) <br>
+                        <strong>College:</strong> D. Y. Patil College of Engineering and Technology, Kolhapur
+                    </div>
+                    <h2>Technical Expertise</h2>
+                    <div class="skills">
+                        <span>HTML5/CSS3</span> <span>JavaScript</span> <span>Python</span> 
+                        <span>GenAI (Gemini API)</span> <span>GitHub</span>
+                    </div>
+                    <h2>Projects</h2>
+                    <div class="project-item"><strong>SmartShop</strong> - E-commerce platform.</div>
+                    <div class="project-item"><strong>AI Resume Skill Analyzer</strong> - Gemini API powered tool.</div>
+                </div></body></html>` 
+            },
+            11: { 
+                title: "Employee Management Table", 
+                content: `<!DOCTYPE html><html><head><style>
+                    table { width: 100%; border-collapse: collapse; font-family: sans-serif; }
+                    th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+                    th { background-color: #4e73df; color: white; }
+                    tr:nth-child(even) { background-color: #f2f2f2; }
+                    .badge { padding: 5px 10px; border-radius: 5px; font-size: 12px; font-weight: bold; }
+                    .active { background: #d4edda; color: #155724; }
+                </style></head><body>
+                <h2>Exp 11: Employee Data</h2>
+                <table><tr><th>ID</th><th>Name</th><th>Role</th><th>Status</th></tr>
+                <tr><td>101</td><td>Shreyas Uchale</td><td>Web Developer</td><td><span class="badge active">Active</span></td></tr>
+                <tr><td>102</td><td>Aria Uchale</td><td>ML Engineer</td><td><span class="badge active">Active</span></td></tr>
+                </table></body></html>` 
+            },
+            12: { 
+                title: "Responsive Flexbox Layout", 
+                content: `<!DOCTYPE html>
+<html>
+  <body>
+    <h2>My CD Collection</h2>
+    <table border="1">
+      <tr bgcolor="#9acd32">
+        <th style="text-align:left">Title</th>
+        <th style="text-align:left">Artist</th>
+      </tr>
+      <tr><td>Empire Burlesque</td><td>Bob Dylan</td></tr>
+      <tr><td>Hide your heart</td><td>Bonnie Tyler</td></tr>
+      <tr><td>Greatest Hits</td><td>Dolly Parton</td></tr>
+      <tr><td>Still got the blues</td><td>Gary Moore</td></tr>
+      <tr><td>Eros</td><td>Eros Ramazzotti</td></tr>
+      <tr><td>One night only</td><td>Bee Gees</td></tr>
+      <tr><td>Sylvias Mother</td><td>Dr.Hook</td></tr>
+      <tr><td>Maggie May</td><td>Rod Stewart</td></tr>
+      <tr><td>Romanza</td><td>Andrea Bocelli</td></tr>
+      <tr><td>When a man loves a woman</td><td>Percy Sledge</td></tr>
+      <tr><td>Black angel</td><td>Savage Rose</td></tr>
+      <tr><td>1999 Grammy Nominees</td><td>Many</td></tr>
+      <tr><td>For the good times</td><td>Kenny Rogers</td></tr>
+      <tr><td>Big Willie style</td><td>Will Smith</td></tr>
+      <tr><td>Tupelo Honey</td><td>Van Morrison</td></tr>
+      <tr><td>Soulsville</td><td>Jorn Hoel</td></tr>
+      <tr><td>The very best of</td><td>Cat Stevens</td></tr>
+      <tr><td>Stop</td><td>Sam Brown</td></tr>
+      <tr><td>Bridge of Spies</td><td>T\`Pau</td></tr>
+      <tr><td>Private Dancer</td><td>Tina Turner</td></tr>
+      <tr><td>Midt om natten</td><td>Kim Larsen</td></tr>
+      <tr><td>Pavarotti Gala Concert</td><td>Luciano Pavarotti</td></tr>
+      <tr><td>The dock of the bay</td><td>Otis Redding</td></tr>
+      <tr><td>Picture book</td><td>Simply Red</td></tr>
+      <tr><td>Red</td><td>The Communards</td></tr>
+      <tr><td>Unchain my heart</td><td>Joe Cocker</td></tr>
+    </table>
+  </body>
+</html>` 
+            },
+            13: { 
+    title: "Student Table", 
+    content: `<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Students</h2>
+    <table border="1">
+      <tr bgcolor="#9acd32">
+        <th>Roll No</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Nick Name</th>
+        <th>Marks</th>
+      </tr>
+      <tr>
+        <td>73</td>
+        <td>Shreyas</td>
+        <td>Uchale</td>
+        <td>Shre</td>
+        <td>95</td>
+      </tr>
+      <tr>
+        <td>25</td>
+        <td>Aria</td>
+        <td>Uchale</td>
+        <td>Arie</td>
+        <td>99</td>
+      </tr>
+    </table>
+  </body>
+</html>` 
+}
+        };
 
+        const btnContainer = document.getElementById('btn-container');
+        const display = document.getElementById('output-display');
+        const titleText = document.getElementById('exp-title');
+
+        for (let i = 1; i <= 13; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'exp-btn';
+            btn.innerHTML = `<span class="exp-num">Exp ${i}</span> <span style="font-size:13px; font-weight:500;">${experiments[i].title}</span>`;
+            
+            btn.onclick = function() {
+                document.querySelectorAll('.exp-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                titleText.innerText = experiments[i].title;
+                display.innerHTML = "";
+                const iframe = document.createElement('iframe');
+                display.appendChild(iframe);
+                const doc = iframe.contentWindow.document;
+                doc.open();
+                doc.write(experiments[i].content);
+                doc.close();
+            };
+            btnContainer.appendChild(btn);
+        }
+    </script>
 </body>
 </html>
